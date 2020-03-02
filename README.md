@@ -1,10 +1,10 @@
-### Info iniziali
+### Info iniziali
 
 1. Per creare il file `package.json`: `pm init -y`
 
-1. Installare express: `npm i express`
+2. Installare express: `npm i express`
 
-1. Per far partire il server: `node index`
+3. Per far partire il server: `node index`
 
 ### Modifiche al server
 Se si effettuano modifiche al server (e.g., aggiunta di una nuova chiamata) bisogna riavviarlo.
