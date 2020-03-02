@@ -1,6 +1,8 @@
 ### Info iniziali
 
-1. Per creare il file `package.json`: `pm init -y`
+1. Per creare il file `package.json`: `npm init -y`
+   
+   Nota: `-y` serve per risponde automaticamente `yes` a tutte le domande del terminale
 
 2. Installare express: `npm i express`
 
