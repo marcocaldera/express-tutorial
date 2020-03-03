@@ -37,4 +37,9 @@ Installiamo moment per stampare delle date:
 ## View Engine
 Possiamo utilizzare express anche per renderizzare template/pagine-web dinamiche.
 
+Per farlo installiamo:
 `npm i express-handlebars`
+
+Nota:
+
+Tendenzialmente express si utilizza o come view-engine o come web-server. In questo caso ho messo tutto insieme per fare dei test.
