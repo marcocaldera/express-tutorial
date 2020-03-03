@@ -1,11 +1,34 @@
 const express = require('express')
 const path = require('path')
+const logger = require('./middleware/logger')
+const exphbs = require('express-handlebars')
+const members = require('./Members')
 
 const app = express();
 
-// STATIC FOLDER CODE SECTION --------------------------------------------------------------------
+// Init middleware logger
+app.use(logger);
 
-// Chiamata che si fa accedendo al sito
+// Body parser middleware
+app.use(express.json()); // così possiamo inviare json come response
+app.use(express.urlencoded({ extended: false })) // per gestire i dati (e.g., json) proveniente da dei form compilati
+
+// Handlebars Middleware
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
+
+/*
+Homepage Route (handlebars)
+Renderizziamo un template dinamico (ovviamente a questo punto la static folder non fa nulla)
+*/
+app.get('/', (req, res) => res.render('index', {
+    title: 'Memeber Test',
+    members
+}))
+
+// STATIC FOLDER CODE SECTION
+
+// Chiamata che si fa accedendo al sito (prima prova)
 // app.get('/', (req, res) => {
 //     // res.send('<h1>Hello world!!</h1>');
 //     res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -18,41 +41,13 @@ const app = express();
 */
 app.use(express.static(path.join(__dirname, 'public')))
 
-// END --------------------------------------------------------------------------------------------
+// END
 
-
-// API CODE SECTION --------------------------------------------------------------------
-
-// Json file hard-coded in modo da semplicare il progetto (si può sempre prendere da db se lo si desidera)
-const members = [
-    {
-        id: 1,
-        name: 'John Doe',
-        email: 'john@gmail.com',
-        status: 'active'
-    },
-    {
-        id: 2,
-        name: 'Bon Doe',
-        email: 'bob@gmail.com',
-        status: 'inactive'
-    },
-    {
-        id: 3,
-        name: 'Shannon Doe',
-        email: 'shannon@gmail.com',
-        status: 'active'
-    }]
-
-// Esempio di chiamata postman GET: http://localhost:5000/api/members che restituisce oggetti json
-// Gets All Members
-app.get('/api/members', (req, res) => res.json(members))
-
-// END --------------------------------------------------------------------------------------------
+// Members API Routes
+app.use('/api/members', require('./routes/api/members'));
 
 
 // Scegliamo la porta a cui ci aspettiamo di ricevere le request
 // process.env.PORT serve perchè in produzione diamo priorità ovviamente a quella che è la porta ufficiale
 const PORT = process.env.PORT || 5000;
-
 app.listen(PORT, () => console.log(`Server stared on port ${PORT}`));

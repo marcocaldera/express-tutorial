@@ -1,4 +1,4 @@
-### Info iniziali
+## Info iniziali
 
 1. Per creare il file `package.json`: `npm init -y`
    
@@ -6,7 +6,9 @@
 
 2. Installare express: `npm i express`
 
-3. Per far partire il server: `node index`
+3. Per far partire il server: `node index` (inizialmente, dopo useremo uno script)
+
+## Web Server
 
 ### Modifiche al server
 Se si effettuano modifiche al server (e.g., aggiunta di una nuova chiamata) bisogna riavviarlo.
@@ -26,3 +28,13 @@ ed ora per avviare il nostro server in dev ci basta fare:
 
 Per vedere vedere il source-code di una pagina web:
 `ALT + CMD + U`
+
+### Moment
+
+Installiamo moment per stampare delle date:
+`npm i moment`
+
+## View Engine
+Possiamo utilizzare express anche per renderizzare template/pagine-web dinamiche.
+
+`npm i express-handlebars`
